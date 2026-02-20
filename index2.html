@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Personal Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            line-height: 1.6;
+            background: beige;
+            color: black;
+        }
+        header {
+            background: black;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        header img {
+            width: 120px;
+            border-radius: 40%;
+            margin-bottom: 10px;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: skyblue;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        section {
+            padding: 40px 20px;
+            max-width: 900px;
+            margin: auto;
+            background: white;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+
+        h2 {
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .skills {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .skills span {
+            border: 1px solid lightgrey;
+            background: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+        }
+
+        .project-card {
+            border: 1px solid lightgrey;
+            padding: 20px;
+            margin-top: 15px;
+            border-radius: 5px;
+        }
+
+        .calculator {
+            text-align: center;
+        }
+
+        .calculator input {
+            padding: 10px;
+            width: 200px;
+            margin: 10px 0;
+        }
+
+        .calculator button {
+            padding: 10px 20px;
+            background: skyblue;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        form input, form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        form button {
+            padding: 10px;
+            width: 100%;
+            background: black;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: black;
+            color: white;
+            margin-top: 20px;
+        }
+        @media (max-width: 768px) {
+            header img {
+                width: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <img src="vely.PNG" alt="Ismael Hassane Kara">
+    <h1>Ismael Hassane Kara</h1>
+    <h3>Frontend Developer</h3>
+    <p>Building responsive and interactive web interfaces</p>
+    <a href="#projects" class="btn">View My Work</a>
+</header>
+<section>
+    <h2>About Me</h2>
+    <p>
+        I am a Computer Science student at INES Ruhengeri.
+        I am passionate about frontend development and UI engineering.
+        My goal is to become a professional web developer.
+    </p>
+    <div class="skills">
+        <span>HTML</span>
+        <span>CSS</span>
+        <span>JavaScript</span>
+        <span>GitHub</span>
+        <span>Bootstrap</span>
+    </div>
+</section>
+<section id="projects">
+    <h2>Projects</h2>
+    <div class="project-card">
+        <h3>Student Management System</h3>
+        <p>Manages student records digitally.</p>
+        <p><strong>Technologies:</strong> HTML, CSS, JavaScript</p>
+    </div>
+    <div class="project-card">
+        <h3>Simple Calculator</h3>
+        <p>Performs arithmetic operations with validation.</p>
+        <p><strong>Technologies:</strong> JavaScript</p>
+    </div>
+    <div class="project-card">
+        <h3>Personal Blog</h3>
+        <p>Responsive static blog design.</p>
+        <p><strong>Technologies:</strong> HTML, CSS</p>
+    </div>
+</section>
+<section class="calculator">
+    <h2>Student GPA Calculator</h2>
+    <input type="number" id="marks" placeholder="Enter marks (0-100)">
+    <br>
+    <button onclick="calculateGPA()">Calculate GPA</button>
+    <p id="result"></p>
+</section>
+<section>
+    <h2>Download CV</h2>
+    <p style="text-align:center;">
+        <a href="#" class="btn">Download CV</a>
+    </p>
+</section>
+<section>
+    <h2>Contact Me</h2>
+    <form id="contactForm">
+        <input type="text" id="name" placeholder="Your Name...">
+        <input type="email" id="email" placeholder="Your Email...">
+        <textarea placeholder="Your Message..."></textarea>
+        <button type="submit">Send Message</button>
+    </form>
+</section>
+<footer>
+    <p>&copy; <span id="year"></span> Ismael Hassane Kara</p>
+</footer>
+<script>
+    function calculateGPA() {
+        const marks = document.getElementById("marks").value;
+        const result = document.getElementById("result");
+        if (marks == "" || marks < 0 || marks > 100) {
+            result.textContent = "Please enter valid marks (0 - 100)";
+            result.style.color = "red";
+            return;
+        }
+        let gpa, grade;
+        if (marks >= 80) {
+            gpa = 4.0;
+            grade = "First Class";
+        } else if (marks >= 70) {
+            gpa = 3.5;
+            grade = "Second Upper";
+        } else if (marks >= 60) {
+            gpa = 3.0;
+            grade = "Second Lower";
+        } else if (marks >= 50) {
+            gpa = 2.5;
+            grade = "Pass";
+        } else {
+            gpa = 0;
+            grade = "Fail";
+        }
+        result.textContent = `GPA: ${gpa} (${grade})`;
+        result.style.color = "green";
+    }
+    document.getElementById("year").textContent = new Date().getFullYear();
+    document.getElementById("contactForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        if (name == " " || email == " ") {
+            alert("Please fill all required fields");
+        } else {
+            alert("Message sent successfully!");
+        }
+    });
+</script>
+</body>
+</html>
